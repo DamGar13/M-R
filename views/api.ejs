@@ -1,0 +1,27 @@
+<%- include('template/header', {tituloPag: 'API' }) %>
+    <%- include('template/aside') %>
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <h1>API</h1>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="imagenes d-flex justify-content-center row"></div>
+            </div>
+        </div>
+        <script>
+            fetch('https://api.thecatapi.com/v1/images/search?limit=40', {
+                method: 'GET',
+                headers: {
+                    'x-api-key': 'live_tQEy8yyaP5Q2fkxB2VTIdU3ou2XpKqg6The9w6bIyzgwpdASMWU9xPELM1dLdCJm',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => data.forEach((imagen) => {
+                    document.querySelector('.imagenes').innerHTML +=
+                        `<img src="${imagen.url}" class="m-1" style="height: 120px; width: 120px">`
+                })
+                    .catch(error => console.error('Error: ', error)));
+        </script>
+
+        <%- include('template/footer') %>

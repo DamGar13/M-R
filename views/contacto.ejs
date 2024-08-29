@@ -1,0 +1,64 @@
+<%- include('template/header', {tituloPag: "CONTACTO" }); %>
+        <%- include('template/aside'); %>
+                <div class="justify-content-center">
+                        <div class="d-flex justify-content-center">
+                                <h1>CONTACTO</h1>
+                        </div>
+                        <div class="d-flex justify-content-center bg-light mx-5 py-4">
+                                <div class="bg-dark rounded-3 p-3">
+                                        <form method="post" id="formContacto">
+                                                <div class="input-group input-group-lg mb-3">
+                                                        <span class="input-group-text">Nombre</span>
+                                                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="ABC" required>
+                                                </div>
+                                                <div class="input-group input-group-lg mb-3">
+                                                        <span class="input-group-text">Correo</span>
+                                                        <input type="email" class="form-control" name="correo" id="correo" placeholder="@" required>
+                                                </div>
+                                                <div class="input-group input-group-lg mb-3">
+                                                        <span class="input-group-text">Telefono</span>
+                                                        <input type="text" class="form-control" name="telefono" id="telefono" placeholder="123" required>
+                                                </div>
+                                                <div class="input-group input-group-lg mb-3">
+                                                        <span class="input-group-text">Mensaje</span>
+                                                        <textarea class="form-control" placeholder="Dejanos tu mensaje" name="mensaje" id="mensaje" required></textarea>
+                                                </div>
+                                                <div class="d-flex justify-content-center my-2">
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+
+                <script>
+
+                      const formulario = document.querySelector('#formContacto');
+
+                      formulario.addEventListener('submit', async(e) => {
+                        e.preventDefault();
+                        let nombre = document.querySelector('#nombre').value;
+                        let correo = document.querySelector('#correo').value;
+                        let telefono = document.querySelector('#telefono').value;
+                        let mensaje = document.querySelector('#mensaje').value;
+                        try{
+                                const data = await fetch('/contacto', {
+                                        method : 'post',
+                                        headers : {
+                                                'Content-Type':'application/json'
+                                        },
+                                        body: JSON.stringify({nombre, correo, telefono, mensaje})
+                                });
+                                const respuesta = await data.json();
+                                if(respuesta.estado){
+                                        window.location.href = '/contacto'
+                                } else{
+                                        alert(respuesta)
+                                }
+                        } catch (error){
+                                console.log(error)
+                        }
+                      })
+                </script>
+
+<%- include('template/footer'); %>

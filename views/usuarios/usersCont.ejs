@@ -1,0 +1,25 @@
+<%- include('../usuarios/template/userHeader', {tituloPagUs: "USERS - CONT" }); %>
+    <%- include('../usuarios/template/userAside') %>
+
+        <div class="contenedor_Usuarios">
+            <div class="d-flex justify-content-center">
+                <h1>Contact Users</h1>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="border border-2 border-dark" style="width: 15%;">Nombre</div>
+                <div class="border border-2 border-dark" style="width: 20%;">Correo</div>
+                <div class="border border-2 border-dark" style="width: 10%;">Telefono</div>
+                <div class="border border-2 border-dark" style="width: 55%;">Mensaje</div>
+            </div>
+            <% arrayClientes.forEach(cliente=> {%>
+            <div class="d-flex justify-content-around">
+                <div class="border border-2 border-dark" style="width: 15%;"><%= cliente.nombre %></div>
+                <div class="border border-2 border-dark" style="width: 20%;"><%= cliente.correo %></div>
+                <div class="border border-2 border-dark" style="width: 10%;"><%= cliente.telefono %></div>
+                <div class="border border-2 border-dark" style="width: 55%; height: fit-content;"><%= cliente.mensaje %></div>
+            </div>
+            <% }) %>
+        </div>
+        </div>
+
+        <%- include('../usuarios/template/userfooter'); %>
