@@ -23,6 +23,10 @@ router.post('/', async(req, res) =>{
     }
 })
 
+router.get('/', (req, res) => {
+    res.render('usuarios')
+})
+
 router.get('/usersMant', (req, res) => {
     res.render('usuarios/usersMant')
 })
